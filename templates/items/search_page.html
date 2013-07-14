@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Vimeo Users Search</title>
+<link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<link href="{{ STATIC_URL }}/css/bootstrap-responsive.min.css" rel="stylesheet" />
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js" ></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js " ></script>
+<style>
+    .set_buffer{
+        margin-top: 50px;
+    }
+    .set_adjacent{
+        margin-top:-12px;
+    }
+
+    .below_search{
+        margin-left: 360px;
+    }
+</style>
+<script type="text/javascript">
+function search_func() {
+    keyword = $('#keyword_id').val();
+    rval = $('input:radio[name=fancy_radio]:checked').val();
+    //alert(keyword)
+    //alert(rval)
+    $.ajax({
+        url:"/search/",
+        method : "POST",
+        data : { 'keyword': keyword, 'filter': rval },
+        success:function(result){
+           $('#result').html(result);   
+        }
+    });
+}
+</script>
+</head>
+    <div class="container">
+        <div class="span6 offset3 set_buffer">
+            <form method="POST">{% csrf_token %}
+                <input type="text" id="keyword_id" name="keyword"/>
+                <a class="btn set_adjacent" onclick="search_func()">Search</a>
+        </div>
+        <div class="row">
+            <div class="span6 offset3 below_search">
+                <input type="radio"  name="fancy_radio" value="all" checked='checked'/>All&nbsp;&nbsp;&nbsp;
+                <input type="radio"  name="fancy_radio" value="paying"/>Paying&nbsp;&nbsp;&nbsp;
+                <input type="radio"  name="fancy_radio" value="uploaded"/>Uploaded&nbsp;&nbsp;&nbsp;
+                <input type="radio"  name="fancy_radio" value="staff_pick" />Staff Pick
+            </div>
+            </form>
+            <hr/>
+        </div>
+        <div class="row" id="result">
+        </div>
+    </div>
+</html>
