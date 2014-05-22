@@ -1,3 +1,3 @@
 vimeo_scrap
 ===========
-trying t learn basic git branching.
+trying to learn basic git branching.I think i got it.
