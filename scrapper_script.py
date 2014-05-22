@@ -6,6 +6,9 @@ from django.utils.encoding import smart_str
 
 
 class SpitUrls(object):
+    '''
+    this is an iterartor that spits url in alphabetic order
+    '''
     def __init__(self,counter=0 ):
         self.counter = counter
     
