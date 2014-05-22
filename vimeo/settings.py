@@ -2,7 +2,7 @@
 import os
 DEBUG = True
 
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),'..'))
+#PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),'..'))
 
 
 TEMPLATE_DEBUG = DEBUG
